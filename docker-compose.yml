@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tz_generator}
+      POSTGRES_USER: ${POSTGRES_USER:-tz_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tz_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tz_user} -d ${POSTGRES_DB:-tz_generator}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgres://tz_user:tz_password@db:5432/tz_generator}
+      MEDIA_ROOT: /app/media
+    volumes:
+      - ./media:/app/media
+      - ./staticfiles:/app/staticfiles
+      - ./fixtures:/app/fixtures:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost/api}
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./infra/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./media:/media:ro
+      - ./staticfiles:/staticfiles:ro
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  postgres_data:

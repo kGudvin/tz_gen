@@ -1,0 +1,193 @@
+{
+  "groups": [
+    {
+      "name": "системный блок",
+      "refine_attribute_name": "Объем оперативной памяти",
+      "enlarged_code": "26.20.15.000-00000000-SB",
+      "okpd2_code": "26.20.15.000",
+      "okpd2_name": "Машины вычислительные электронные цифровые прочие",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.15.000-00000026",
+          "name": "Системный блок",
+          "refine_value": "8",
+          "characteristics": [
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 8"]},
+            {"name": "Тип оперативной памяти", "is_required": true, "values": ["DDR4", "DDR5"]},
+            {"name": "Наличие твердотельного накопителя", "is_required": false, "values": ["Да"]},
+            {"name": "Объем накопителя SSD", "is_required": false, "unit_name": "Гигабайт", "values": ["≥ 256", "≥ 512"]}
+          ]
+        },
+        {
+          "code": "26.20.15.000-00000028",
+          "name": "Системный блок",
+          "refine_value": "16",
+          "characteristics": [
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 16"]},
+            {"name": "Тип оперативной памяти", "is_required": true, "values": ["DDR4", "DDR5"]},
+            {"name": "Наличие твердотельного накопителя", "is_required": false, "values": ["Да"]},
+            {"name": "Объем накопителя SSD", "is_required": false, "unit_name": "Гигабайт", "values": ["≥ 512", "≥ 1024"]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "монитор",
+      "refine_attribute_name": "Диагональ",
+      "enlarged_code": "26.20.17.110-00000000-MON",
+      "okpd2_code": "26.20.17.110",
+      "okpd2_name": "Мониторы, подключаемые к компьютеру",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.17.110-00000037",
+          "name": "Монитор",
+          "refine_value": "21.5",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 21.5"]},
+            {"name": "Разрешение экрана", "is_required": true, "values": ["1920x1080"]},
+            {"name": "Тип матрицы", "is_required": false, "values": ["IPS", "VA"]}
+          ]
+        },
+        {
+          "code": "26.20.17.110-00000027",
+          "name": "Монитор",
+          "refine_value": "28",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 28"]},
+            {"name": "Разрешение экрана", "is_required": true, "values": ["3840x2160", "2560x1440"]},
+            {"name": "Наличие HDMI", "is_required": false, "values": ["Да"]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "клавиатура",
+      "refine_attribute_name": "Тип подключения",
+      "enlarged_code": "26.20.16.110-00000000-KBD",
+      "okpd2_code": "26.20.16.110",
+      "okpd2_name": "Клавиатуры",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.16.110-00000002",
+          "name": "Клавиатура",
+          "refine_value": "Проводная",
+          "characteristics": [
+            {"name": "Тип подключения", "is_required": true, "values": ["Проводная"]},
+            {"name": "Интерфейс подключения", "is_required": true, "values": ["USB"]},
+            {"name": "Наличие цифрового блока", "is_required": false, "values": ["Да", "Нет"]}
+          ]
+        },
+        {
+          "code": "26.20.16.110-00000003",
+          "name": "Клавиатура",
+          "refine_value": "Беспроводная",
+          "characteristics": [
+            {"name": "Тип подключения", "is_required": true, "values": ["Беспроводная"]},
+            {"name": "Интерфейс подключения", "is_required": true, "is_multiple_choice": true, "values": ["Bluetooth", "USB-радиоканал"]},
+            {"name": "Наличие цифрового блока", "is_required": false, "values": ["Да", "Нет"]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "мышь",
+      "refine_attribute_name": "Тип мыши / тип подключения",
+      "enlarged_code": "26.20.16.170-00000000-MOUSE",
+      "okpd2_code": "26.20.16.170",
+      "okpd2_name": "Манипуляторы",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.16.170-00000002",
+          "name": "Мышь",
+          "refine_value": "Проводная",
+          "characteristics": [
+            {"name": "Тип подключения", "is_required": true, "values": ["Проводная"]},
+            {"name": "Тип датчика", "is_required": true, "values": ["Оптический"]},
+            {"name": "Количество кнопок", "is_required": false, "values": ["≥ 2", "≥ 3"]}
+          ]
+        },
+        {
+          "code": "26.20.16.170-00000003",
+          "name": "Мышь",
+          "refine_value": "Беспроводная",
+          "characteristics": [
+            {"name": "Тип подключения", "is_required": true, "values": ["Беспроводная"]},
+            {"name": "Тип датчика", "is_required": true, "values": ["Оптический"]},
+            {"name": "Количество кнопок", "is_required": false, "values": ["≥ 2", "≥ 3"]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "моноблок",
+      "refine_attribute_name": "Диагональ",
+      "enlarged_code": "26.20.15.000-00000000-AIO",
+      "okpd2_code": "26.20.15.000",
+      "okpd2_name": "Машины вычислительные электронные цифровые прочие",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.15.000-00000037",
+          "name": "Моноблок",
+          "refine_value": "23",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 23"]},
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 8", "≥ 16"]},
+            {"name": "Наличие веб-камеры", "is_required": false, "values": ["Да"]}
+          ]
+        },
+        {
+          "code": "26.20.15.000-00000038",
+          "name": "Моноблок",
+          "refine_value": "27",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 27"]},
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 16"]},
+            {"name": "Наличие веб-камеры", "is_required": false, "values": ["Да"]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ноутбук",
+      "refine_attribute_name": "Диагональ",
+      "enlarged_code": "26.20.11.110-00000000-NB",
+      "okpd2_code": "26.20.11.110",
+      "okpd2_name": "Компьютеры портативные массой не более 10 кг",
+      "unit_name": "шт.",
+      "unit_code": "796",
+      "positions": [
+        {
+          "code": "26.20.11.110-00000140",
+          "name": "Ноутбук",
+          "refine_value": "15",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 15"]},
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 8", "≥ 16"]},
+            {"name": "Наличие Wi-Fi", "is_required": false, "values": ["Да"]}
+          ]
+        },
+        {
+          "code": "26.20.11.110-00000165",
+          "name": "Ноутбук",
+          "refine_value": "15.6",
+          "characteristics": [
+            {"name": "Диагональ экрана", "is_required": true, "unit_name": "Дюйм", "values": ["≥ 15.6"]},
+            {"name": "Объем оперативной памяти", "is_required": true, "unit_name": "Гигабайт", "values": ["≥ 16"]},
+            {"name": "Наличие Wi-Fi", "is_required": false, "values": ["Да"]}
+          ]
+        }
+      ]
+    }
+  ]
+}
+

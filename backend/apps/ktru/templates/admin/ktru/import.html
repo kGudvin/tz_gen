@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <div id="content-main">
+    <p>Загрузите один или несколько источников. Рекомендуемый порядок: Excel с уточненными КТРУ, затем HTML-печатные формы ЕИС.</p>
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <fieldset class="module aligned">
+        {{ form.as_p }}
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" value="Загрузить и применить" class="default">
+        <a href="{% url 'admin:ktru_ktrugroup_changelist' %}" class="closelink">Отмена</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
