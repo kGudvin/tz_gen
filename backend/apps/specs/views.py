@@ -92,5 +92,5 @@ class TechnicalSpecViewSet(viewsets.ModelViewSet):
     def export(self, request, pk=None, fmt=None):
         spec = self.get_object()
         document_export = export_spec(spec, fmt, request.user)
-        url = request.build_absolute_uri(document_export.file.url)
+        url = document_export.file.url
         return response.Response({"url": url, "format": fmt, "export_id": document_export.id})

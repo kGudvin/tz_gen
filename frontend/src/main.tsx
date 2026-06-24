@@ -644,8 +644,9 @@ function Preview({ spec, onBack, onSaved }: { spec: TechnicalSpec; onBack: () =>
     setMessage("");
     try {
       const result = await api.exportSpec(spec.id, format);
+      const url = new URL(result.url, window.location.origin).toString();
       const link = document.createElement("a");
-      link.href = result.url;
+      link.href = url;
       link.download = "";
       link.rel = "noopener";
       document.body.appendChild(link);
