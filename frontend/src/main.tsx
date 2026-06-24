@@ -644,7 +644,13 @@ function Preview({ spec, onBack, onSaved }: { spec: TechnicalSpec; onBack: () =>
     setMessage("");
     try {
       const result = await api.exportSpec(spec.id, format);
-      window.open(result.url, "_blank");
+      const link = document.createElement("a");
+      link.href = result.url;
+      link.download = "";
+      link.rel = "noopener";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Ошибка экспорта");
     }
@@ -660,13 +666,13 @@ function Preview({ spec, onBack, onSaved }: { spec: TechnicalSpec; onBack: () =>
           <button className="secondary" onClick={save}>
             Готово
           </button>
-          <button className="ghost icon-text" onClick={() => download("docx")}>
+          <button type="button" className="ghost icon-text" onClick={() => download("docx")}>
             <Download size={16} /> DOCX
           </button>
-          <button className="ghost icon-text" onClick={() => download("xlsx")}>
+          <button type="button" className="ghost icon-text" onClick={() => download("xlsx")}>
             <Download size={16} /> XLSX
           </button>
-          <button className="ghost icon-text" onClick={() => download("pdf")}>
+          <button type="button" className="ghost icon-text" onClick={() => download("pdf")}>
             <Download size={16} /> PDF
           </button>
         </div>
