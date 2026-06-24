@@ -29,6 +29,14 @@ class ApiClient {
     localStorage.removeItem("token");
   }
 
+  private parseResponseText(text: string, contentType: string | null) {
+    if (!text) return null;
+    if (contentType?.includes("application/json")) {
+      return JSON.parse(text);
+    }
+    return text;
+  }
+
   private async request<T>(path: string, options: RequestInit = {}): Promise<T> {
     const response = await fetch(`${API_BASE}${path}`, {
       ...options,
@@ -39,9 +47,17 @@ class ApiClient {
       },
     });
     const text = await response.text();
-    const data = text ? JSON.parse(text) : null;
+    let data: any = null;
+    try {
+      data = this.parseResponseText(text, response.headers.get("content-type"));
+    } catch {
+      data = text || null;
+    }
     if (!response.ok) {
-      const detail = data?.detail || data?.non_field_errors?.join?.(", ") || JSON.stringify(data);
+      const detail =
+        data?.detail ||
+        data?.non_field_errors?.join?.(", ") ||
+        (typeof data === "string" ? data.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim() : JSON.stringify(data));
       throw new ApiError(detail || "Ошибка запроса", response.status, data);
     }
     return data as T;
