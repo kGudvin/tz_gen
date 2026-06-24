@@ -138,7 +138,7 @@ function SpecList({
       <div className="toolbar">
         <label className="searchbox">
           <Search size={16} />
-          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Поиск ТЗ по названию" />
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Поиск ТЗ" />
         </label>
         <button className="ghost icon" onClick={onRefresh} title="Обновить">
           <RefreshCw size={18} />
@@ -152,9 +152,9 @@ function SpecList({
           setTitle("");
         }}
       >
-        <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Название нового ТЗ" />
+        <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Название черновика" />
         <button className="primary icon-text" type="submit">
-          <Plus size={18} /> Создать ТЗ
+          <Plus size={18} /> Создать
         </button>
       </form>
       <div className="table">
@@ -258,7 +258,7 @@ function CharacteristicPicker({
       <div className="char-tools">
         <label className="searchbox compact">
           <Search size={16} />
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Поиск по характеристикам" />
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Поиск по списку характеристик" />
         </label>
         <div className="segmented" aria-label="Фильтр характеристик">
           {filters.map(([key, label]) => (
@@ -351,9 +351,9 @@ function PostscriptPanel({
   return (
     <section className="postscript-panel">
       <div className="section-title">
-        <h3>Приписки под таблицей</h3>
+        <h3>Приписки</h3>
         <button className="secondary" type="button" onClick={save}>
-          Сохранить приписки
+          Сохранить
         </button>
       </div>
       {templates.length > 0 ? (
@@ -372,8 +372,8 @@ function PostscriptPanel({
         <p className="muted">Активных шаблонов пока нет. Их можно добавить в админке.</p>
       )}
       <label>
-        Своя приписка
-        <textarea value={customText} onChange={(event) => setCustomText(event.target.value)} rows={4} placeholder="Каждая строка будет отдельной припиской под таблицей" />
+        Свой текст приписок
+        <textarea value={customText} onChange={(event) => setCustomText(event.target.value)} rows={4} placeholder="Каждая строка станет отдельной припиской" />
       </label>
       {message && <div className="notice compact-notice">{message}</div>}
     </section>
@@ -557,7 +557,7 @@ function Editor({
       </div>
       <div className="main-panel">
         <PostscriptPanel spec={spec} templates={postscriptTemplates} onSave={savePostscriptSettings} />
-        <h2>Добавление позиции</h2>
+        <h2>Добавить позицию</h2>
         <div className="form-grid">
           <label>
             Группа
@@ -583,9 +583,9 @@ function Editor({
             Количество
             <input value={quantity} onChange={(event) => setQuantity(event.target.value)} type="number" min="1" step="1" />
           </label>
-          <button className="secondary icon-text" onClick={resolve}>
-            <Search size={16} /> Определить КТРУ
-          </button>
+            <button className="secondary icon-text" onClick={resolve}>
+            <Search size={16} /> Определить
+            </button>
         </div>
         {message && <div className="notice">{message}</div>}
 
@@ -616,11 +616,11 @@ function Editor({
             <div className="form-actions">
               {editingItem && (
                 <button className="ghost" onClick={resetEditorForm}>
-                  Отменить редактирование
+                  Отменить
                 </button>
               )}
               <button className="primary" disabled={!requiredDone} onClick={saveItem}>
-                {editingItem ? "Сохранить изменения" : "Завершить позицию"}
+                {editingItem ? "Сохранить" : "Добавить"}
               </button>
             </div>
           </>
@@ -654,11 +654,11 @@ function Preview({ spec, onBack, onSaved }: { spec: TechnicalSpec; onBack: () =>
     <section className="workspace">
       <div className="toolbar">
         <button className="ghost" onClick={onBack}>
-          Вернуться к редактированию
+          Назад к редактированию
         </button>
         <div className="actions">
           <button className="secondary" onClick={save}>
-            Сохранить
+            Готово
           </button>
           <button className="ghost icon-text" onClick={() => download("docx")}>
             <Download size={16} /> DOCX

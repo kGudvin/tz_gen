@@ -211,15 +211,18 @@ p {
 
 .searchbox {
   position: relative;
+  display: block;
   flex: 1;
   max-width: 520px;
 }
 
 .searchbox svg {
   position: absolute;
-  top: 34px;
+  top: 50%;
   left: 12px;
+  transform: translateY(-50%);
   color: #93a4b8;
+  pointer-events: none;
 }
 
 .searchbox input {
@@ -228,6 +231,19 @@ p {
 
 .searchbox.compact {
   max-width: none;
+}
+
+.toolbar .searchbox {
+  min-width: 280px;
+}
+
+.create-row {
+  flex-wrap: wrap;
+}
+
+.create-row input {
+  min-width: 280px;
+  flex: 1;
 }
 
 .create-row input {
@@ -294,9 +310,9 @@ p {
   border: 1px solid #25324a;
   background: #0d1425;
   border-radius: 6px;
-  padding: 10px;
+  padding: 11px 10px;
   display: grid;
-  gap: 4px;
+  gap: 8px;
 }
 
 .mini-item.active {
@@ -305,11 +321,23 @@ p {
 
 .mini-main {
   display: grid;
-  gap: 4px;
+  gap: 6px;
   padding: 0;
   text-align: left;
   color: inherit;
   background: transparent;
+  justify-items: start;
+}
+
+.mini-main strong {
+  line-height: 1.3;
+}
+
+.mini-main span {
+  display: block;
+  color: #9fb1c9;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .mini-actions,
@@ -327,6 +355,10 @@ p {
 .resolved span {
   color: #9fb1c9;
   font-size: 13px;
+}
+
+.resolved span {
+  line-height: 1.35;
 }
 
 .form-grid {

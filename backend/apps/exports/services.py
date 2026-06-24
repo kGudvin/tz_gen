@@ -141,15 +141,6 @@ def _format_table(table, widths: list[float], header_rows: int = 1) -> None:
             cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
-def _add_caption(document: Document, text: str) -> None:
-    paragraph = document.add_paragraph()
-    paragraph.paragraph_format.space_before = Pt(8)
-    paragraph.paragraph_format.space_after = Pt(4)
-    run = paragraph.add_run(text)
-    run.bold = True
-    _apply_run_font(run)
-
-
 def _add_postscripts(document: Document, lines: list[str]) -> None:
     if not lines:
         return
@@ -176,19 +167,12 @@ def build_docx(spec: TechnicalSpec, path: Path) -> None:
     styles["Normal"].paragraph_format.space_after = Pt(0)
     styles["Normal"].paragraph_format.line_spacing = 1
 
-    title = document.add_paragraph()
-    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    title.paragraph_format.space_after = Pt(10)
-    run = title.add_run(spec.title)
-    run.bold = True
-    _apply_run_font(run, Pt(14))
     postscript_lines = _postscript_lines(spec)
 
     for item_index, item in enumerate(spec.items.select_related("ktru_position").prefetch_related("selected_characteristics"), start=1):
         if item_index > 1:
             document.add_page_break()
 
-        _add_caption(document, f"Позиция {item.position_number}")
         top = document.add_table(rows=2, cols=5)
         _format_table(top, [1.1, 8.2, 2.8, 2.2, 1.5])
         headers = ["N п/п", "Наименование объекта закупки", "Единица измерения", "Кол-во", "КТРУ"]
