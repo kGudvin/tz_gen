@@ -61,6 +61,7 @@ Copy-Item .env.example .env
 2. Соберите и запустите контейнеры:
 
 ```powershell
+docker network create web
 docker compose up --build
 ```
 
@@ -84,17 +85,19 @@ docker compose exec backend python manage.py seed_ktru
 
 После запуска:
 
-- пользовательский интерфейс: `http://YOUR_SERVER_IP:8081/`
-- админка: `http://YOUR_SERVER_IP:8081/admin/`
+- nginx доступен reverse proxy в Docker-сети `web` по адресу `tz-gen-nginx:80`;
+- пользовательский интерфейс и админка открываются на домене, настроенном в reverse proxy.
 
 ## Если на сервере уже крутится другой Docker-проект
 
-Этот проект по умолчанию публикует nginx на `8081`, чтобы не конфликтовать с другим приложением на том же VPS.
+Этот проект не публикует nginx напрямую на порту VPS, поэтому не конфликтует с другими приложениями. Nginx подключается к общей внешней сети `web` с алиасом `tz-gen-nginx`.
 
-Если тебе нужен другой внешний порт, меняется только проброс в `docker-compose.yml` и два URL в `.env`:
+Reverse proxy направляет запросы на `tz-gen-nginx:80`. В `.env` укажите публичный домен в двух переменных:
 
 - `DJANGO_CSRF_TRUSTED_ORIGINS`
 - `FRONTEND_ORIGIN`
+
+Для локальной разработки без reverse proxy можно добавить Compose override с пробросом `8081:80`.
 
 ## Тестовые данные текущей локальной сборки
 
@@ -111,7 +114,7 @@ docker compose exec backend python manage.py seed_ktru
 
 ### 1. Регистрация и вход
 
-1. Откройте `http://YOUR_SERVER_IP:8081/`.
+1. Откройте публичный адрес приложения.
 2. На вкладке регистрации укажите email и пароль.
 3. После регистрации аккаунт попадет в ожидание одобрения.
 4. Администратор должен открыть Django Admin и одобрить заявку.
@@ -179,7 +182,7 @@ docker compose exec backend python manage.py seed_ktru
 
 ### Одобрение пользователей
 
-1. Откройте `http://YOUR_SERVER_IP:8081/admin/`.
+1. Откройте `/admin/` на публичном адресе приложения.
 2. Перейдите в `Registration requests`.
 3. Выберите заявку.
 4. Используйте действие одобрения или измените статус вручную.
